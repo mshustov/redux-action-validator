@@ -1,9 +1,9 @@
 ## Motivation
 
-How that problem has appeared? Working on complex client app written in js with usage of redux you may want to use different techincs that impose some restictions on the redux store state.
+How has that problem appeared? Working on complex client app written in js with redux usage you may want to use different technics that impose some restrictions on the redux store state.
 - Want to rehydrate store after SSR(Server Side Rendering)?
 - Want to persist temporary state in LocalStorage for next re-usage?
-- Want to use [Event Sourcing](https://martinfowler.com/eaaDev/EventSourcing.html) approach to be able to restore state of your app?
+- Want to use [Event Sourcing](https://martinfowler.com/eaaDev/EventSourcing.html) approach to be able to restore your app state?
 
 Well, in that case we have to have got *serializible* store.
 Actually the [original redux FAQ](http://redux.js.org/docs/faq/OrganizingState.html#can-i-put-functions-promises-or-other-non-serializable-items-in-my-store-state) recommends it:
@@ -20,7 +20,7 @@ But we are human and can't spot problem easily. Take the most popular devtools f
 > ...
 > It will handle also date, regex, undefined, error objects, symbols, maps, sets and functions.
 
-But that solves only the problem for the devtools, not the whole your app. And anyway next issues could be found in `redux-devtools` for 5 minutes of searching:
+So devtools try to handle that case carefully and anyway next issues could be found in `redux-devtools` for 5 minutes of searching:
 
 *handling circlar references:*
 - https://github.com/gaearon/redux-devtools/issues/323
@@ -31,7 +31,7 @@ But that solves only the problem for the devtools, not the whole your app. And a
 - https://github.com/gaearon/redux-devtools/issues/360
 - https://github.com/gaearon/redux-devtools/issues/340
 
-Now, when we aware of trade-offs, probably we want to keep store as much serializible as we can. And let the machine lint the aforementioned problems for us!
+Now, when we aware of trade-offs, probably we want to keep store as much serializable as we can. And let the machine lint the aforementioned problems for us.
 
 ## Install
 install `npm i blablabla`
@@ -87,13 +87,13 @@ const store = createStore(
 ```
 
 ## Options
-To adjust options to your need pass option object when initiate middleware
+To adjust options to your need pass option object when creating a middleware.
 
 ```js
 createReduxActionValidationMiddleware({ validatorOptions, onError })
 ```
 
-Next interfaces are used by utlity:
+Next interfaces are used by the utility:
 ```ts
 ErrorDescription {
     rule: string;       // used to setup rule name
@@ -112,7 +112,7 @@ ValidationRule {
 #### shouldIgnore
 `shouldIgnore: (action) => bool`
 
-actions shouldn't be validated
+filter actions that shouldn't be validated
 
 #### ignoreCircularRefs
 `ignoreCircularRefs: bool`
@@ -122,19 +122,19 @@ ignore circular reference errors
 #### validateAction
 `validateAction: ValidationRule || null`
 
-Passing `null` you can disable default action validation implementation. By deafult we only validate that action meets [FSA](https://github.com/acdlite/flux-standard-action) requirements.
-Also you can setup your own validation rule instead by passing object with `ValidationRule` interface.
+Passing `null` you can disable default action validation implementation. By default, we only validate that action meets [FSA](https://github.com/acdlite/flux-standard-action) requirements.
+Also, you can adjust your own validation rule instead by passing an object with `ValidationRule` interface.
 
 #### validateProps
 `validateProps: ValidationRule || null`
 
-Passing `null` you can disable default action properties validation implementation. By deafult we validate all properties are plain javascript objects (POJO).
-Also you can setup your own validation rule instead by passing object with `ValidationRule` interface.
+Passing `null` you can disable default action properties validation implementation. By default we validate all properties are plain javascript objects (POJO).
+Also, you can adjust your own validation rule instead by passing an object with `ValidationRule` interface.
 
 #### customRules
 `validateProps: ValidationRule || null`
 
-You can extend default settings with your own validation rule by passing object with `ValidationRule` interface.
+You can extend default settings with your own validation rule by passing an object with `ValidationRule` interface.
 
 ### onError
 `(errors: ErrorDescription[]) => void`
