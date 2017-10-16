@@ -13,8 +13,8 @@ describe('redux-action-validator', () => {
                 const testObject = {
                     person: {
                         name: 'person-name',
-                        age: 20
-                    }
+                        age: 20,
+                    },
                 };
                 function runner() {
                     const traverser = new Traverser();
@@ -30,8 +30,8 @@ describe('redux-action-validator', () => {
                     const testObject = {
                         person: {
                             name: 'person-name',
-                            age: 20
-                        }
+                            age: 20,
+                        },
                     };
                     const traverser = new Traverser();
                     expect(() => traverser.traverse(testObject)).to.not.throw();
@@ -40,12 +40,12 @@ describe('redux-action-validator', () => {
                 it('should be called with paths of both circular refs (if presert in passed object)', () => {
                     const person = {
                         name: 'person-name',
-                        age: 20
+                        age: 20,
                     };
 
                     const position = {
                         title: 'developer',
-                        person
+                        person,
                     };
                     person.position = position;
 
@@ -61,11 +61,11 @@ describe('redux-action-validator', () => {
                 it('shouldn\'t be called if no circular refs in passed object', () => {
                     const person = {
                         name: 'person-name',
-                        age: 20
+                        age: 20,
                     };
 
                     const position = {
-                        title: 'developer'
+                        title: 'developer',
                     };
                     person.position = position;
 
@@ -80,11 +80,11 @@ describe('redux-action-validator', () => {
                 it('duplicated references within different subtrees aren\'t considered as circular refs', () => {
                     const person = {
                         name: 'person-name',
-                        age: 20
+                        age: 20,
                     };
 
                     const position = {
-                        title: 'developer'
+                        title: 'developer',
                     };
                     person.position = position;
                     person.employmentStatus = position;
@@ -103,11 +103,11 @@ describe('redux-action-validator', () => {
             it('should be called once on root object', () => {
                 const person = {
                     name: 'person-name',
-                    age: 20
+                    age: 20,
                 };
 
                 const position = {
-                    title: 'developer'
+                    title: 'developer',
                 };
                 person.position = position;
 
@@ -116,7 +116,7 @@ describe('redux-action-validator', () => {
 
                 const traverser = new Traverser({
                     onStart: onStartSpy,
-                    visit: visitSpy
+                    visit: visitSpy,
                 });
 
                 traverser.traverse(person);
@@ -131,11 +131,11 @@ describe('redux-action-validator', () => {
             it('should be called with every property while traversing', () => {
                 const person = {
                     name: 'person-name',
-                    age: 20
+                    age: 20,
                 };
 
                 const position = {
-                    title: 'developer'
+                    title: 'developer',
                 };
                 person.position = position;
 
@@ -153,7 +153,7 @@ describe('redux-action-validator', () => {
                     [person.name, '[$][name]'],
                     [person.age, '[$][age]'],
                     [person.position, '[$][position]'],
-                    [person.position.title, '[$][position][title]']
+                    [person.position.title, '[$][position][title]'],
                 ];
                 expect(traversingResult).to.have.deep.members(expected);
             });
@@ -161,12 +161,12 @@ describe('redux-action-validator', () => {
             it('shouldn\'t visit circular refs', () => {
                 const person = {
                     name: 'person-name',
-                    age: 20
+                    age: 20,
                 };
 
                 const position = {
                     title: 'developer',
-                    person
+                    person,
                 };
                 person.position = position;
 
@@ -184,7 +184,7 @@ describe('redux-action-validator', () => {
                     [person.name, '[$][name]'],
                     [person.age, '[$][age]'],
                     [person.position, '[$][position]'],
-                    [person.position.title, '[$][position][title]']
+                    [person.position.title, '[$][position][title]'],
                 ];
                 expect(traversingResult).to.have.deep.members(expected);
             });

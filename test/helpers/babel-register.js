@@ -4,9 +4,9 @@ babelRegister({
     presets: [
         ['env', {
             targets: {
-                node: 'current'
+                node: 'current',
             },
-            loose: true
-        }]
-    ]
+            loose: true,
+        }],
+    ],
 });

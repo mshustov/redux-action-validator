@@ -1,0 +1,15 @@
+{
+    "extends": [
+      "eslint-config-airbnb-base"
+    ],
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "rules": {
+        "indent": ["error", 4],
+        "no-multi-spaces": ["error", { "ignoreEOLComments": true }],
+        "no-underscore-dangle": 0,
+        "import/no-named-as-default-member": 0
+    }
+}

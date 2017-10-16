@@ -28,13 +28,13 @@ describe('redux-action-validator', () => {
                 const validate = createReduxActionValidator({
                     customRules: {
                         isValid: isValidStub,
-                        getDescription: descriptionSpy
-                    }
+                        getDescription: descriptionSpy,
+                    },
                 });
 
                 const testObject = {};
 
-                const result = validate(testObject);
+                validate(testObject);
 
                 expect(isValidStub).calledOnce;
                 expect(isValidStub).to.have.been.calledWith(testObject);
@@ -47,13 +47,13 @@ describe('redux-action-validator', () => {
                 const validate = createReduxActionValidator({
                     customRules: {
                         isValid: isValidStub,
-                        getDescription: descriptionStub
-                    }
+                        getDescription: descriptionStub,
+                    },
                 });
 
                 const testObject = {};
 
-                const result = validate(testObject);
+                validate(testObject);
 
                 expect(isValidStub).calledOnce;
                 expect(isValidStub).to.have.been.calledWith(testObject);
@@ -66,13 +66,13 @@ describe('redux-action-validator', () => {
                 const validate = createReduxActionValidator({
                     customRules: {
                         isValid: isValidStub,
-                        getDescription: descriptionStub
-                    }
+                        getDescription: descriptionStub,
+                    },
                 });
 
                 const testObject = { value: 'a' };
 
-                const result = validate(testObject);
+                validate(testObject);
 
                 expect(isValidStub).calledTwice;
             });
@@ -85,7 +85,7 @@ describe('redux-action-validator', () => {
                 const shouldIgnore = object => object === testObject;
                 const validate = createReduxActionValidator({
                     shouldIgnore,
-                    customRules: { isValid: isValidSpy }
+                    customRules: { isValid: isValidSpy },
                 });
                 validate(testObject);
 
@@ -105,7 +105,7 @@ describe('redux-action-validator', () => {
                 expect(result.isValid).to.be.false;
                 expect(result.errors).to.not.be.empty;
                 expect(result.errors[0]).to.containSubset({
-                    rule: 'noCircularReferences'
+                    rule: 'noCircularReferences',
                 });
             });
 
@@ -114,7 +114,7 @@ describe('redux-action-validator', () => {
                 testObject.payload = testObject;
 
                 const validate = createReduxActionValidator({
-                    ignoreCircularRefs: true
+                    ignoreCircularRefs: true,
                 });
 
                 const result = validate(testObject);
@@ -148,8 +148,8 @@ describe('redux-action-validator', () => {
                     validateProps: false,
                     customRules: {
                         isValid: isValidStub,
-                        getDescription: descriptionSpy
-                    }
+                        getDescription: descriptionSpy,
+                    },
                 });
 
                 const testObject = {};
@@ -169,8 +169,8 @@ describe('redux-action-validator', () => {
                     validateProps: false,
                     customRules: {
                         isValid: isValidStub,
-                        getDescription: descriptionStub
-                    }
+                        getDescription: descriptionStub,
+                    },
                 });
 
                 const testObject = {};
@@ -179,7 +179,7 @@ describe('redux-action-validator', () => {
 
                 expect(result.isValid).to.be.false;
                 expect(result.errors).to.not.be.empty;
-                expect(result.errors).contains(description)
+                expect(result.errors).contains(description);
             });
         });
     });

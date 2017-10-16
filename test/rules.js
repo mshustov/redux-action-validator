@@ -11,9 +11,9 @@ describe('redux-action-validator', () => {
                     false,          // boolean
                     Symbol('1'),    // symbol
                     null,           // null
-                    undefined       // undefined
+                    undefined,      // undefined
                 ];
-                suits.forEach(v => {
+                suits.forEach((v) => {
                     expect(rules.validateProps.isValid(v)).to.be.true;
                 });
             });
@@ -28,14 +28,14 @@ describe('redux-action-validator', () => {
             });
 
             it('shouldn\'t handle other object types as valid payload values', () => {
-                function Animal(){}
+                function Animal() {}
                 const suits = [
                     new Date(),         // date
                     () => null,         // fn
                     Promise.resolve(),  // promise
-                    new Animal()        // custom type
+                    new Animal(),       // custom type
                 ];
-                suits.forEach(v => {
+                suits.forEach((v) => {
                     expect(rules.validateProps.isValid(v)).to.be.false;
                 });
             });
