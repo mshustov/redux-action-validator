@@ -8,7 +8,10 @@
   },
   "scripts": {
     "build": "webpack",
-    "test": "mocha --opts test/mocha.opts"
+    "test": "npm run test:unit && npm run test:size",
+    "test:unit": "mocha --opts test/mocha.opts",
+    "test:size": "bundlesize",
+    "pretest:size": "npm run build"
   },
   "engines": {
     "node": "8.6.0",
@@ -16,6 +19,7 @@
   },
   "dependencies": {
     "flux-standard-action": "1.2.0",
+    "lodash": "^4.17.4",
     "lodash.isobject": "^3.0.2",
     "lodash.isobjectlike": "^4.0.0",
     "lodash.isplainobject": "^4.0.6",
@@ -25,6 +29,7 @@
     "babel-core": "6.26.0",
     "babel-loader": "7.1.2",
     "babel-preset-env": "1.6.0",
+    "bundlesize": "^0.15.3",
     "chai": "3.5.0",
     "chai-as-promised": "5.3.0",
     "chai-subset": "1.3.0",
@@ -33,5 +38,11 @@
     "sinon-chai": "2.10.0",
     "webpack": "3.6.0"
   },
-  "license": "WTFL"
+  "license": "WTFL",
+  "bundlesize": [
+    {
+      "path": "./dist/*.js",
+      "threshold": "1Kb"
+    }
+  ]
 }
