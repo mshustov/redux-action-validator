@@ -4,7 +4,7 @@
   "main": "dist/bundle.js",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/restrry/redux-action-validator"
   },
   "scripts": {
     "build": "webpack",
@@ -37,7 +37,7 @@
     "sinon-chai": "2.10.0",
     "webpack": "3.6.0"
   },
-  "license": "WTFL",
+  "license": "MIT",
   "bundlesize": [
     {
       "path": "./dist/*.js",
