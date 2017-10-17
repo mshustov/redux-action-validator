@@ -1,3 +1,5 @@
+Tiny library for validating redux actions with some built-in and customizible rules.
+
 ## Motivation
 
 How has that problem appeared? Working on complex client app written in js with redux usage you may want to use different technics that impose some restrictions on the redux store state.

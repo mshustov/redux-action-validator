@@ -1,17 +1,22 @@
 {
   "name": "redux-action-validator",
   "version": "0.0.1",
-  "main": "dist/bundle.js",
+  "main": "dist/reduxActionValidator.min.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/restrry/redux-action-validator"
   },
   "scripts": {
     "build": "webpack",
-    "test": "npm run test:unit && npm run test:size",
+    "test": "npm run prepare && npm run test:all",
+    "test:all": "npm run test:unit && npm run test:size",
     "test:unit": "mocha --opts test/mocha.opts",
     "test:size": "bundlesize",
-    "pretest:size": "npm run build"
+    "prepare": "npm run build",
+    "prerelease": "npm run prepare && npm run test:all",
+    "release:patch": "npm run prerelease && npm version patch && npm publish && git push --follow-tags",
+    "release:minor": "npm run prerelease && npm version minor && npm publish && git push --follow-tags",
+    "release:major": "npm run prerelease && npm version major && npm publish && git push --follow-tags"
   },
   "engines": {
     "node": "8.6.0",

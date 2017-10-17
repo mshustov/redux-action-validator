@@ -13,7 +13,7 @@ module.exports = {
     output: {
         publicPath: '/',
         path: path.join(__dirname, './dist/'),
-        filename: 'bundle.js',
+        filename: 'reduxActionValidator.min.js',
 
         library: 'reduxActionValidator',
         libraryTarget: 'umd',
